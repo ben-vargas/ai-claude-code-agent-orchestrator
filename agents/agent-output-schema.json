@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Output Schema",
+  "description": "Standardized output format for all agents to enable tracking, UI generation, and inter-agent communication",
+  "type": "object",
+  "required": ["agent", "taskId", "timestamp", "status", "initiator", "summary"],
+  "properties": {
+    "agent": {
+      "type": "string",
+      "description": "Name of the agent (must match agent-registry.json)"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Unique identifier for this task",
+      "pattern": "^[A-Z]{2,4}-[0-9]{8}-[0-9]{4}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of task completion"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planning", "in-progress", "completed", "blocked", "failed", "paused"],
+      "description": "Current status of the task"
+    },
+    "initiator": {
+      "type": "string",
+      "description": "Who initiated this task (user, orchestration-agent, or specific agent name)"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief human-readable summary of work completed",
+      "maxLength": 500
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "deliverables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {"type": "string", "enum": ["file", "code", "document", "analysis", "design", "configuration"]},
+              "path": {"type": "string"},
+              "description": {"type": "string"}
+            }
+          }
+        },
+        "insights": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key findings, recommendations, or insights"
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Relevant measurements or KPIs"
+        }
+      }
+    },
+    "worklog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {"type": "string", "format": "date-time"},
+          "action": {"type": "string"},
+          "details": {"type": "string"},
+          "toolsUsed": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "upstream": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Task IDs this task depended on"
+        },
+        "downstream": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Task IDs that depend on this task"
+        }
+      }
+    },
+    "suggestedAgents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "agent": {"type": "string"},
+          "reason": {"type": "string"},
+          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
+          "estimatedDuration": {"type": "string"}
+        }
+      }
+    },
+    "toolsUsed": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "List of tools, APIs, or MCPs utilized"
+    },
+    "suggestedTools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tool": {"type": "string"},
+          "purpose": {"type": "string"},
+          "type": {"type": "string", "enum": ["mcp", "api", "service", "library"]},
+          "urgency": {"type": "string", "enum": ["immediate", "soon", "eventually"]}
+        }
+      }
+    },
+    "nextSteps": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Recommended follow-up actions"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {"type": "string"},
+          "severity": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "suggestedResolution": {"type": "string"}
+        }
+      }
+    },
+    "estimatedCompletion": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Estimated completion time for in-progress tasks"
+    },
+    "actualDuration": {
+      "type": "string",
+      "description": "Actual time spent on task (ISO 8601 duration)"
+    }
+  }
+}

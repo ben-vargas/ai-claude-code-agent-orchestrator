@@ -1,0 +1,157 @@
+{
+  "agents": [
+    {
+      "name": "backend-expert",
+      "category": "engineering",
+      "expertise": ["API development", "databases", "microservices", "authentication"],
+      "collaborates_with": ["frontend-expert", "devops-sre-expert", "cloud-architect", "qa-test-engineer", "cloud-security-auditor"]
+    },
+    {
+      "name": "business-analyst",
+      "category": "strategy",
+      "expertise": ["market research", "competitive analysis", "business modeling", "ROI analysis"],
+      "collaborates_with": ["product-strategy-expert", "marketing-expert", "data-analytics-expert", "business-operations-expert"]
+    },
+    {
+      "name": "business-operations-expert",
+      "category": "operations",
+      "expertise": ["payment processing", "subscription billing", "financial planning", "compliance"],
+      "collaborates_with": ["legal-compliance-expert", "data-analytics-expert", "backend-expert", "customer-success-expert"]
+    },
+    {
+      "name": "cloud-architect",
+      "category": "infrastructure",
+      "expertise": ["AWS", "Azure", "cloud migration", "infrastructure design"],
+      "collaborates_with": ["devops-sre-expert", "cloud-security-auditor", "backend-expert", "business-operations-expert"]
+    },
+    {
+      "name": "cloud-security-auditor",
+      "category": "security",
+      "expertise": ["security audits", "compliance", "vulnerability assessment", "IAM"],
+      "collaborates_with": ["cloud-architect", "devops-sre-expert", "backend-expert", "legal-compliance-expert"]
+    },
+    {
+      "name": "customer-success-expert",
+      "category": "customer",
+      "expertise": ["onboarding", "support systems", "retention", "community building"],
+      "collaborates_with": ["product-strategy-expert", "uiux-expert", "data-analytics-expert", "marketing-expert"]
+    },
+    {
+      "name": "data-analytics-expert",
+      "category": "analytics",
+      "expertise": ["analytics platforms", "SQL", "dashboards", "predictive analytics"],
+      "collaborates_with": ["product-strategy-expert", "business-analyst", "customer-success-expert", "marketing-expert"]
+    },
+    {
+      "name": "devops-sre-expert",
+      "category": "infrastructure",
+      "expertise": ["CI/CD", "monitoring", "incident response", "infrastructure as code"],
+      "collaborates_with": ["cloud-architect", "backend-expert", "cloud-security-auditor", "qa-test-engineer"]
+    },
+    {
+      "name": "frontend-expert",
+      "category": "engineering",
+      "expertise": ["React", "Vue", "Angular", "responsive design", "performance"],
+      "collaborates_with": ["backend-expert", "uiux-expert", "mobile-expert", "qa-test-engineer"]
+    },
+    {
+      "name": "legal-compliance-expert",
+      "category": "compliance",
+      "expertise": ["privacy laws", "terms of service", "intellectual property", "contracts"],
+      "collaborates_with": ["business-operations-expert", "cloud-security-auditor", "product-strategy-expert"]
+    },
+    {
+      "name": "marketing-expert",
+      "category": "growth",
+      "expertise": ["content marketing", "SEO", "paid advertising", "email marketing"],
+      "collaborates_with": ["social-media-expert", "product-strategy-expert", "data-analytics-expert", "uiux-expert"]
+    },
+    {
+      "name": "mobile-expert",
+      "category": "engineering",
+      "expertise": ["iOS", "Android", "React Native", "Flutter", "app store optimization"],
+      "collaborates_with": ["frontend-expert", "backend-expert", "uiux-expert", "qa-test-engineer"]
+    },
+    {
+      "name": "product-strategy-expert",
+      "category": "strategy",
+      "expertise": ["product-market fit", "pricing strategy", "roadmap planning", "growth metrics"],
+      "collaborates_with": ["business-analyst", "uiux-expert", "data-analytics-expert", "customer-success-expert"]
+    },
+    {
+      "name": "qa-test-engineer",
+      "category": "quality",
+      "expertise": ["test automation", "performance testing", "security testing", "CI/CD integration"],
+      "collaborates_with": ["backend-expert", "frontend-expert", "mobile-expert", "devops-sre-expert"]
+    },
+    {
+      "name": "social-media-expert",
+      "category": "growth",
+      "expertise": ["social strategy", "content creation", "community management", "influencer marketing"],
+      "collaborates_with": ["marketing-expert", "customer-success-expert", "uiux-expert", "data-analytics-expert"]
+    },
+    {
+      "name": "uiux-expert",
+      "category": "design",
+      "expertise": ["user research", "wireframing", "prototyping", "usability testing"],
+      "collaborates_with": ["frontend-expert", "product-strategy-expert", "customer-success-expert", "mobile-expert"]
+    },
+    {
+      "name": "orchestration-agent",
+      "category": "coordination",
+      "expertise": ["workflow optimization", "agent coordination", "parallel execution", "dependency management", "multi-agent evaluation"],
+      "collaborates_with": ["all-agents"],
+      "special_role": "meta-agent"
+    },
+    {
+      "name": "ai-ml-expert",
+      "category": "engineering",
+      "expertise": ["machine learning", "deep learning", "NLP", "computer vision", "MLOps"],
+      "collaborates_with": ["backend-expert", "data-analytics-expert", "devops-sre-expert", "product-strategy-expert"]
+    },
+    {
+      "name": "security-specialist",
+      "category": "security",
+      "expertise": ["application security", "penetration testing", "secure coding", "authentication", "encryption"],
+      "collaborates_with": ["backend-expert", "frontend-expert", "cloud-architect", "devops-sre-expert"]
+    },
+    {
+      "name": "database-architect",
+      "category": "infrastructure",
+      "expertise": ["database design", "query optimization", "scaling strategies", "data modeling", "migration"],
+      "collaborates_with": ["backend-expert", "devops-sre-expert", "performance-engineer", "data-analytics-expert"]
+    },
+    {
+      "name": "performance-engineer",
+      "category": "engineering",
+      "expertise": ["performance optimization", "load testing", "profiling", "caching strategies", "scalability"],
+      "collaborates_with": ["backend-expert", "frontend-expert", "database-architect", "devops-sre-expert"]
+    },
+    {
+      "name": "blockchain-expert",
+      "category": "engineering",
+      "expertise": ["smart contracts", "Web3", "DeFi", "NFTs", "blockchain architecture"],
+      "collaborates_with": ["backend-expert", "security-specialist", "frontend-expert", "business-analyst"]
+    },
+    {
+      "name": "pricing-optimization-expert",
+      "category": "strategy",
+      "expertise": ["dynamic pricing", "price testing", "revenue optimization", "subscription models", "elasticity analysis"],
+      "collaborates_with": ["product-strategy-expert", "business-operations-expert", "data-analytics-expert", "marketing-expert"]
+    },
+    {
+      "name": "competitive-intelligence-expert",
+      "category": "strategy",
+      "expertise": ["market monitoring", "competitor analysis", "strategic intelligence", "benchmarking", "battle cards"],
+      "collaborates_with": ["product-strategy-expert", "marketing-expert", "business-analyst", "pricing-optimization-expert"]
+    }
+  ],
+  "collaboration_patterns": {
+    "product_development": ["product-strategy-expert", "business-analyst", "uiux-expert", "backend-expert", "frontend-expert"],
+    "go_to_market": ["marketing-expert", "social-media-expert", "customer-success-expert", "data-analytics-expert"],
+    "infrastructure_setup": ["cloud-architect", "devops-sre-expert", "cloud-security-auditor"],
+    "business_operations": ["business-operations-expert", "legal-compliance-expert", "data-analytics-expert"],
+    "quality_assurance": ["qa-test-engineer", "cloud-security-auditor", "devops-sre-expert"],
+    "growth_optimization": ["data-analytics-expert", "marketing-expert", "product-strategy-expert", "customer-success-expert"]
+  }
+}
