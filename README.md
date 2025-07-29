@@ -14,6 +14,7 @@ Transform your development workflow with specialized AI agents that collaborate 
 - **Self-Improving System**: Learns optimal agent selection over time
 - **Standardized Communication**: Consistent output format for seamless collaboration
 - **Work Tracking**: Each agent maintains progress logs and deliverables
+- **MCP-Ready Architecture**: Designed for seamless Model Context Protocol integration
 
 ## 📋 Available Agents
 
@@ -56,10 +57,10 @@ Transform your development workflow with specialized AI agents that collaborate 
 ## 🔧 Installation
 
 ### Prerequisites
-- Claude Code (Claude Desktop) installed
+- Claude Code (Claude Desktop) installed on macOS
 - Access to Claude Code's agent system
 
-### Quick Install
+### Quick Install (macOS)
 
 1. Clone this repository:
 ```bash
@@ -67,25 +68,23 @@ git clone https://github.com/W4M-ai/Claude-Code-Agent-Orchestrator.git
 cd Claude-Code-Agent-Orchestrator
 ```
 
-2. Copy the agents to your Claude configuration:
+2. Run the installation script:
 ```bash
-# macOS/Linux
+./install.sh
+```
+
+Or manually:
+```bash
+# Copy agents to Claude configuration
 cp -r agents/* ~/.claude/agents/
 
-# Windows
-xcopy agents\* "%USERPROFILE%\.claude\agents\" /E /I
-```
-
-3. Create agent workspaces directory:
-```bash
-# macOS/Linux
+# Create agent workspaces directory
 mkdir -p ~/.claude/agent-workspaces
-
-# Windows
-mkdir "%USERPROFILE%\.claude\agent-workspaces"
 ```
 
-4. Restart Claude Code to load the new agents
+3. Restart Claude Code to load the new agents
+
+**Windows users**: See [windows/README.md](windows/README.md) for installation instructions.
 
 ## 🎯 Usage
 
@@ -188,17 +187,79 @@ The system continuously improves through:
 - Execution time optimization
 - Pattern recognition for agent selection
 
+## 🔮 Future: MCP Integration
+
+### Model Context Protocol (MCP) Support - Coming Soon!
+
+We're excited to announce that future versions will integrate Model Context Protocol servers for enhanced capabilities:
+
+#### Planned MCP Integrations:
+
+**Development Tools**
+- **Filesystem MCP**: Direct file system operations for agents
+- **Git MCP**: Version control operations without shell commands
+- **GitHub MCP**: Direct GitHub API access for PRs, issues, and repos
+- **GitLab MCP**: GitLab integration for enterprise teams
+
+**Data & Analytics**
+- **PostgreSQL MCP**: Direct database queries and schema management
+- **SQLite MCP**: Local database operations
+- **Google Drive MCP**: Document and spreadsheet access
+- **Slack MCP**: Team communication and notifications
+
+**Cloud & Infrastructure**
+- **AWS MCP**: Direct AWS service management
+- **Kubernetes MCP**: K8s cluster operations
+- **Terraform MCP**: Infrastructure as code management
+
+**Specialized Tools**
+- **Puppeteer MCP**: Web scraping and browser automation
+- **Memory MCP**: Persistent memory across sessions
+- **Brave Search MCP**: Web search capabilities
+- **Fetch MCP**: Enhanced HTTP operations
+
+### How MCP Will Enhance Agents:
+
+1. **Direct Tool Access**: Agents won't need to use shell commands for common operations
+2. **Better Performance**: Native protocol is faster than command execution
+3. **Enhanced Safety**: MCP servers provide controlled access to resources
+4. **Richer Capabilities**: Access to APIs and services not available via CLI
+5. **Persistent Context**: Memory MCP will allow agents to remember across sessions
+
+### Example Future Workflow:
+```yaml
+backend-expert:
+  mcps:
+    - filesystem    # Direct file operations
+    - postgresql    # Database management
+    - git          # Version control
+    - github       # PR creation
+
+devops-expert:
+  mcps:
+    - kubernetes   # Cluster management
+    - aws          # Cloud resources
+    - terraform    # Infrastructure
+```
+
+### Contributing to MCP Integration:
+We welcome contributions for MCP integration! See our [MCP Integration Guide](docs/MCP-INTEGRATION-GUIDE.md) for details on adding MCP support to agents.
+
 ## 🐛 Troubleshooting
 
 ### Agents Not Appearing
 - Ensure files are in `~/.claude/agents/`
 - Restart Claude Code
-- Check file permissions
+- Check file permissions: `ls -la ~/.claude/agents/`
 
 ### Orchestration Issues
 - Verify `agent-registry.json` is properly formatted
 - Check orchestration agent logs
 - Ensure all dependent agents are installed
+
+### macOS Specific
+- Grant terminal full disk access if needed
+- Check Claude Code permissions in System Settings > Privacy & Security
 
 ## 📚 Documentation
 
