@@ -1,0 +1,125 @@
+{
+  "timeout_settings": {
+    "enabled": true,
+    "default_minutes": 5,
+    "auto_proceed_default": true,
+    "show_countdown": true,
+    "warning_intervals": [60, 30, 15],
+    
+    "by_decision_type": {
+      "critical": {
+        "timeout_minutes": 10,
+        "description": "Major architectural or strategic decisions"
+      },
+      "standard": {
+        "timeout_minutes": 5,
+        "description": "Regular workflow decisions"
+      },
+      "confirmation": {
+        "timeout_minutes": 2,
+        "description": "Simple yes/no confirmations"
+      },
+      "urgent": {
+        "timeout_minutes": 1,
+        "description": "Time-critical decisions"
+      }
+    },
+    
+    "by_project_level": {
+      "1": {
+        "multiplier": 0.4,
+        "description": "MVP - Move fast, fail fast"
+      },
+      "2": {
+        "multiplier": 0.6,
+        "description": "Beta - Quick decisions"
+      },
+      "3": {
+        "multiplier": 1.0,
+        "description": "Alpha - Standard timeouts"
+      },
+      "4": {
+        "multiplier": 1.4,
+        "description": "Production - Careful consideration"
+      },
+      "5": {
+        "multiplier": 2.0,
+        "description": "Enterprise - Maximum deliberation"
+      }
+    },
+    
+    "by_timeline": {
+      "urgent": {
+        "multiplier": 0.4,
+        "description": "Urgent timeline - quick decisions"
+      },
+      "normal": {
+        "multiplier": 1.0,
+        "description": "Normal timeline - standard timeouts"
+      },
+      "relaxed": {
+        "multiplier": 2.0,
+        "description": "Relaxed timeline - more time to consider"
+      }
+    },
+    
+    "special_cases": {
+      "database_selection": {
+        "timeout_minutes": 10,
+        "reason": "Long-term impact on architecture"
+      },
+      "security_decisions": {
+        "timeout_minutes": 15,
+        "reason": "Critical for system safety"
+      },
+      "cost_decisions": {
+        "timeout_minutes": 10,
+        "reason": "Financial implications"
+      },
+      "api_design": {
+        "timeout_minutes": 8,
+        "reason": "Affects all future development"
+      }
+    },
+    
+    "messages": {
+      "initial_prompt": "⏱️ Will auto-proceed with {recommendation} in {minutes} minutes...",
+      "countdown_update": "[{progress_bar}] {time_remaining} remaining",
+      "warning_message": "⚠️ {seconds} seconds until auto-proceed",
+      "timeout_message": "⏱️ TIMEOUT: Auto-proceeding with recommended option",
+      "user_responded": "✅ User responded in {time}"
+    }
+  },
+  
+  "interactive_modes": {
+    "full_interactive": {
+      "description": "All decisions require user input",
+      "timeout_enabled": true,
+      "auto_proceed": true
+    },
+    "guided_interactive": {
+      "description": "Only critical decisions need input",
+      "timeout_enabled": true,
+      "auto_proceed": true,
+      "skip_minor_decisions": true
+    },
+    "semi_autonomous": {
+      "description": "Proceed unless user intervenes",
+      "timeout_enabled": true,
+      "auto_proceed": true,
+      "short_timeouts": true
+    },
+    "fully_autonomous": {
+      "description": "No user interaction",
+      "timeout_enabled": false,
+      "auto_proceed": false
+    }
+  },
+  
+  "timeout_calculation": {
+    "formula": "base_timeout * level_multiplier * timeline_multiplier",
+    "minimum": 1,
+    "maximum": 30,
+    "round_to_nearest": 0.5
+  }
+}

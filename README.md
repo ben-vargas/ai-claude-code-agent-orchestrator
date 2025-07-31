@@ -1,6 +1,33 @@
 # Claude Code Agent Orchestrator 🎭
 
+[![Version](https://img.shields.io/badge/version-0.5-blue.svg)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Built with](https://img.shields.io/badge/built%20with-Claude%20Code-purple.svg)](https://claude.ai/code)
+
 A comprehensive system of 24 specialized AI agents that work together to handle complex software development tasks. Built for [Claude Code](https://claude.ai/code) by [W4M.ai](https://w4m.ai).
+
+## 🎉 What's New in v0.5
+
+**MCP Server Management**: Automatic detection, validation, and configuration of Model Context Protocol servers. Ensures agents have access to required tools before execution.
+
+- 🔌 Auto-detect MCP servers from Claude Desktop
+- ✅ Validate server executables and dependencies
+- 📋 Copy servers between Desktop and Code configs
+- ⚠️ Critical server warnings with graceful degradation
+- 🤖 Agent-specific MCP requirement checking
+
+[See full changelog](CHANGELOG.md)
+
+## 📊 Version Timeline
+
+| Version | Release Date | Key Features | Development Time |
+|---------|--------------|--------------|------------------|
+| **v0.1** | Jan 2024 | Initial release - 24 specialized agents | < 1 hour with Claude Code |
+| **v0.2** | Jan 2024 | SQLite memory with filesystem fallback | 2 hours |
+| **v0.3** | Jan 2024 | Project levels (1-5) & interactive mode | 3 hours |
+| **v0.4** | Jan 2024 | Auto-proceed timeouts for interactive mode | 1 hour |
+| **v0.5** | Jan 2024 | MCP server management & validation | 2 hours |
+| **v0.6** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
 
 ## 🚀 Overview
 
@@ -10,10 +37,14 @@ Transform your development workflow with specialized AI agents that collaborate 
 
 - **24 Specialized Agents**: Expert knowledge across all development domains
 - **Intelligent Orchestration**: Automatic task routing and parallel execution
+- **SQLite Memory System** (v0.2): Persistent memory with automatic filesystem fallback
+- **Project Levels** (v0.3): Configurable quality levels from MVP (1) to Enterprise (5)
+- **Interactive Mode** (v0.3): Guide decisions with clarifying questions
+- **Auto-Proceed Timeouts** (v0.4): Continue automatically if no response received
+- **MCP Server Management** (v0.5): Automatic detection and validation of required tools
 - **Multi-Agent Evaluation**: Compare approaches from multiple experts
 - **Self-Improving System**: Learns optimal agent selection over time
-- **Standardized Communication**: Consistent output format for seamless collaboration
-- **Work Tracking**: Each agent maintains progress logs and deliverables
+- **Progress Tracking**: Real-time monitoring of orchestration status
 - **MCP-Ready Architecture**: Designed for seamless Model Context Protocol integration
 
 ## 📋 Available Agents
@@ -73,6 +104,12 @@ cd Claude-Code-Agent-Orchestrator
 ./install.sh
 ```
 
+The installation script will:
+- Copy all agents to your Claude configuration
+- Set up SQLite memory support (optional)
+- Check and configure MCP servers automatically
+- Verify the installation
+
 Or manually:
 ```bash
 # Copy agents to Claude configuration
@@ -80,11 +117,37 @@ cp -r agents/* ~/.claude/agents/
 
 # Create agent workspaces directory
 mkdir -p ~/.claude/agent-workspaces
+
+# Check MCP servers
+./scripts/mcp-server-manager.sh --auto
 ```
 
 3. Restart Claude Code to load the new agents
 
 **Windows users**: See [windows/README.md](windows/README.md) for installation instructions.
+
+### MCP Server Configuration
+
+The orchestrator now automatically checks for required MCP servers:
+
+```bash
+# Check and configure MCP servers
+./scripts/mcp-server-manager.sh
+
+# Options:
+# 1. List all MCP servers
+# 2. Compare Desktop vs Code configs
+# 3. Copy servers from Desktop to Code
+# 4. Validate all MCP servers
+# 5. Check required MCP servers
+# 6. Full setup (recommended)
+```
+
+Critical MCP servers for full functionality:
+- **filesystem**: File operations
+- **memory**: Persistent agent memory  
+- **web**: Web browsing and search
+- **git**: Version control
 
 ## 🎯 Usage
 
@@ -277,6 +340,31 @@ We welcome contributions for MCP integration! See our [MCP Integration Guide](do
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details
+
+## 🚀 Roadmap & Next Steps
+
+### v0.6 (In Development) - True Parallel Execution
+- 🖥️ **Multi-Terminal Orchestration**: Spawn multiple Claude instances for true parallelism
+- ⚡ **3x Speed Improvement**: Run independent agents simultaneously
+- 📊 **Resource Management**: Smart allocation across terminals
+- 🔄 **Advanced Coordination**: Inter-terminal communication protocol
+- 📈 **Live Progress Dashboard**: Real-time visualization of parallel execution
+
+[See detailed design](docs/PARALLEL-EXECUTION-DESIGN.md)
+
+### Future Versions
+- **v0.7**: Extended MCP Integration Suite (GitHub, Slack, AWS, etc.)
+- **v0.8**: Agent Learning System with Performance Analytics
+- **v0.9**: Visual Workflow Designer
+- **v1.0**: Enterprise Features (SSO, Audit Logs, SLA)
+- **v1.1**: Production-Ready Platform
+
+### Contributing Ideas
+- Custom agent creation wizard
+- Agent marketplace for community contributions
+- Integration with popular development tools
+- Cross-platform support (Windows, Linux)
+- Cloud-hosted orchestration service
 
 ## 🔗 Links
 

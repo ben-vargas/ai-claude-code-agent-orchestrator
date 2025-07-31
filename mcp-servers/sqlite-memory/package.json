@@ -1,0 +1,26 @@
+{
+  "name": "sqlite-memory-mcp-server",
+  "version": "1.0.0",
+  "description": "SQLite-based memory MCP server for Claude Code Agent Orchestrator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "better-sqlite3": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.9"
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "memory",
+    "sqlite",
+    "agent"
+  ],
+  "author": "Claude Code Agent Orchestrator",
+  "license": "MIT"
+}

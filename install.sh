@@ -60,6 +60,55 @@ cp -r agents/* "$CLAUDE_DIR/agents/" 2>/dev/null || {
     exit 1
 }
 
+# Check if SQLite memory should be installed
+echo ""
+echo "💾 SQLite Memory Setup"
+echo "─────────────────────"
+echo "Would you like to install SQLite memory support?"
+echo "This provides:"
+echo "  • High-performance memory storage"
+echo "  • Cross-agent memory sharing"
+echo "  • Rich querying capabilities"
+echo "  • Automatic fallback to filesystem"
+echo ""
+read -p "Install SQLite memory? (Y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+    echo "📦 Setting up SQLite memory..."
+    
+    # Create MCP servers directory
+    mkdir -p "$CLAUDE_DIR/mcp-servers"
+    
+    # Copy SQLite memory server
+    if [ -d "mcp-servers/sqlite-memory" ]; then
+        cp -r mcp-servers/sqlite-memory "$CLAUDE_DIR/mcp-servers/"
+        
+        # Install dependencies
+        echo "📥 Installing SQLite memory dependencies..."
+        cd "$CLAUDE_DIR/mcp-servers/sqlite-memory"
+        npm install --quiet
+        cd - > /dev/null
+        
+        echo "✅ SQLite memory server installed"
+        echo ""
+        echo "⚠️  To enable SQLite memory, add this to your Claude MCP config:"
+        echo "   ~/.claude/claude_desktop_config.json"
+        echo ""
+        echo '   "sqlite-memory": {'
+        echo '     "command": "node",'
+        echo '     "args": ["'$CLAUDE_DIR'/mcp-servers/sqlite-memory/index.js"],'
+        echo '     "env": {'
+        echo '       "MEMORY_DB_DIR": "'$CLAUDE_DIR'/agent-memory"'
+        echo '     }'
+        echo '   }'
+        echo ""
+    else
+        echo "⚠️  SQLite memory server files not found in ./mcp-servers/sqlite-memory"
+    fi
+else
+    echo "⏭️  Skipping SQLite memory setup"
+fi
+
 # Set proper permissions for macOS
 chmod -R 755 "$CLAUDE_DIR/agents"
 
@@ -89,11 +138,25 @@ else
     echo "   ❌ ERROR: Output schema missing"
 fi
 
+# Check and setup MCP servers
+echo ""
+echo "🔌 MCP Server Setup"
+echo "──────────────────"
+echo "Checking MCP server configurations..."
+
+# Run MCP server manager in auto mode
+if [ -f "scripts/mcp-server-manager.sh" ]; then
+    ./scripts/mcp-server-manager.sh --auto
+else
+    echo "⚠️  MCP server manager not found"
+    echo "   Agents may not have access to all tools"
+fi
+
 # Check Claude Code process
 if pgrep -x "Claude" > /dev/null; then
     echo ""
     echo "⚠️  Claude Code is currently running"
-    echo "   Please restart it to load the new agents"
+    echo "   Please restart it to load the new agents and MCP servers"
 fi
 
 # Installation complete

@@ -24,6 +24,7 @@ Thumbs.db
 # Personal configuration
 settings.local.json
 claude_desktop_config.json
+.claude/
 
 # Backup files
 *.bak
