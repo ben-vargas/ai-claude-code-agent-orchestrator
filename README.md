@@ -23,10 +23,10 @@ A comprehensive system of 24 specialized AI agents that work together to handle 
 | Version | Release Date | Key Features | Development Time |
 |---------|--------------|--------------|------------------|
 | **v0.1** | Jan 2024 | Initial release - 24 specialized agents | < 1 hour with Claude Code |
-| **v0.2** | Jan 2024 | SQLite memory with filesystem fallback | 2 hours |
-| **v0.3** | Jan 2024 | Project levels (1-5) & interactive mode | 3 hours |
-| **v0.4** | Jan 2024 | Auto-proceed timeouts for interactive mode | 1 hour |
-| **v0.5** | Jan 2024 | MCP server management & validation | 2 hours |
+| **v0.2** | Jan 2024 | SQLite memory with filesystem fallback | 30 minutes |
+| **v0.3** | Jan 2024 | Project levels (1-5) & interactive mode | 40 minutes |
+| **v0.4** | Jan 2024 | Auto-proceed timeouts for interactive mode | 45 minutes |
+| **v0.5** | Jan 2024 | MCP server management & validation | 30 minutes |
 | **v0.6** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
 
 ## 🚀 Overview
