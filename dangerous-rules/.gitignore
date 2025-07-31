@@ -1,0 +1,24 @@
+# Prevent accidental commits of active rule files
+*.active
+*.in-use
+*-local.json
+
+# Logs from dangerous operations
+*.log
+*.audit
+*.trace
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Never commit credentials
+*-credentials.json
+*-secrets.json
+api-keys.json
+
+# User customizations
+my-*.json
+custom-*.json
+personal-*.json

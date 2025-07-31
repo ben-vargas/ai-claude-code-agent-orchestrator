@@ -1,0 +1,198 @@
+{
+  "name": "Agent Orchestration Rules",
+  "description": "⚠️ DANGEROUS: Allows orchestration agent full control over other agents. USE AT YOUR OWN RISK!",
+  "version": "1.0.0",
+  "rules": {
+    "orchestration_control": {
+      "enabled": true,
+      "require_confirmation": false,
+      "agent_management": {
+        "spawn_agents": true,
+        "terminate_agents": true,
+        "modify_agent_rules": true,
+        "override_agent_decisions": true,
+        "max_concurrent_agents": 50
+      },
+      "task_distribution": {
+        "automatic": true,
+        "load_balancing": true,
+        "priority_scheduling": true,
+        "deadline_enforcement": true
+      },
+      "resource_allocation": {
+        "cpu_allocation": "dynamic",
+        "memory_allocation": "dynamic",
+        "storage_allocation": "unlimited",
+        "network_priority": "high"
+      }
+    },
+    "agent_permissions": {
+      "backend-expert": {
+        "file_access": ["**/backend/**", "**/api/**", "**/server/**"],
+        "command_access": ["node", "npm", "python", "go", "cargo"],
+        "network_access": true,
+        "database_access": true
+      },
+      "frontend-expert": {
+        "file_access": ["**/frontend/**", "**/client/**", "**/public/**"],
+        "command_access": ["npm", "yarn", "webpack", "vite"],
+        "network_access": true,
+        "browser_automation": true
+      },
+      "devops-sre-expert": {
+        "file_access": ["**/.github/**", "**/docker/**", "**/k8s/**"],
+        "command_access": ["docker", "kubectl", "terraform", "ansible"],
+        "cloud_access": true,
+        "infrastructure_modify": true
+      },
+      "database-architect": {
+        "file_access": ["**/migrations/**", "**/schema/**"],
+        "database_operations": ["*"],
+        "backup_operations": true,
+        "performance_tuning": true
+      },
+      "security-specialist": {
+        "file_access": ["*"],
+        "audit_access": true,
+        "vulnerability_scanning": true,
+        "penetration_testing": true
+      },
+      "qa-test-engineer": {
+        "file_access": ["**/tests/**", "**/spec/**"],
+        "command_access": ["jest", "pytest", "mocha", "cypress"],
+        "environment_control": true
+      }
+    },
+    "workflow_automation": {
+      "enabled": true,
+      "require_confirmation": false,
+      "pipeline_creation": {
+        "auto_generate": true,
+        "templates": ["microservice", "monolith", "serverless", "mobile"],
+        "custom_workflows": true
+      },
+      "execution_modes": {
+        "sequential": true,
+        "parallel": true,
+        "distributed": true,
+        "event_driven": true
+      },
+      "error_handling": {
+        "auto_retry": true,
+        "fallback_agents": true,
+        "rollback_on_failure": true,
+        "alert_on_critical": false
+      }
+    },
+    "inter_agent_communication": {
+      "enabled": true,
+      "protocols": ["json", "grpc", "rest", "websocket"],
+      "message_queue": {
+        "enabled": true,
+        "max_queue_size": 10000,
+        "priority_queuing": true
+      },
+      "shared_memory": {
+        "enabled": true,
+        "size_gb": 16,
+        "persistence": true
+      },
+      "conflict_resolution": {
+        "strategy": "orchestrator_decides",
+        "voting_enabled": false,
+        "consensus_required": false
+      }
+    },
+    "project_management": {
+      "enabled": true,
+      "auto_planning": true,
+      "milestone_tracking": true,
+      "dependency_management": true,
+      "time_estimation": {
+        "enabled": true,
+        "learning_enabled": true,
+        "buffer_percentage": 20
+      },
+      "cost_tracking": {
+        "enabled": true,
+        "budget_enforcement": false,
+        "resource_optimization": true
+      }
+    },
+    "deployment_control": {
+      "enabled": true,
+      "require_confirmation": false,
+      "environments": {
+        "development": {
+          "auto_deploy": true,
+          "rollback_enabled": true
+        },
+        "staging": {
+          "auto_deploy": true,
+          "testing_required": true
+        },
+        "production": {
+          "auto_deploy": false,
+          "approval_required": true
+        }
+      },
+      "strategies": [
+        "blue_green",
+        "canary",
+        "rolling",
+        "recreate"
+      ]
+    },
+    "monitoring_and_observability": {
+      "enabled": true,
+      "metrics_collection": true,
+      "log_aggregation": true,
+      "trace_collection": true,
+      "alerting": {
+        "enabled": false,
+        "channels": []
+      },
+      "dashboards": {
+        "auto_create": true,
+        "real_time": true
+      }
+    },
+    "learning_and_optimization": {
+      "enabled": true,
+      "performance_tracking": true,
+      "pattern_recognition": true,
+      "strategy_evolution": true,
+      "knowledge_sharing": {
+        "between_agents": true,
+        "persistent_storage": true,
+        "cross_project": true
+      }
+    },
+    "emergency_controls": {
+      "kill_switch": "orchestrator:emergency:stop",
+      "resource_limits": {
+        "total_cpu_percent": 90,
+        "total_memory_percent": 90,
+        "total_cost_per_hour": 100
+      },
+      "automatic_shutdown": {
+        "on_repeated_failures": true,
+        "on_resource_exhaustion": true,
+        "on_security_breach": true
+      }
+    },
+    "compliance_and_audit": {
+      "audit_logging": true,
+      "decision_tracking": true,
+      "change_attribution": true,
+      "compliance_checks": false
+    }
+  },
+  "metadata": {
+    "created": "2024-01-31",
+    "risk_level": "EXTREME",
+    "use_case": "multi_agent_orchestration",
+    "warning": "Gives orchestrator unprecedented control. Only use in fully isolated environments.",
+    "note": "This ruleset allows the orchestration agent to control all other agents with minimal restrictions."
+  }
+}

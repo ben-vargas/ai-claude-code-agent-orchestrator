@@ -1,0 +1,226 @@
+{
+  "name": "Automation and CI/CD Rules",
+  "description": "⚠️ DANGEROUS: Designed for unattended automation. Zero confirmation prompts. USE AT YOUR OWN RISK!",
+  "version": "1.0.0",
+  "rules": {
+    "global_settings": {
+      "require_confirmation": false,
+      "interactive_mode": false,
+      "assume_yes": true,
+      "skip_warnings": true,
+      "timeout_seconds": 3600
+    },
+    "file_operations": {
+      "create": {
+        "enabled": true,
+        "require_confirmation": false,
+        "auto_overwrite": true,
+        "create_directories": true,
+        "allowed_paths": ["*"]
+      },
+      "modify": {
+        "enabled": true,
+        "require_confirmation": false,
+        "backup_before_modify": false,
+        "allowed_paths": ["*"],
+        "auto_format": true
+      },
+      "delete": {
+        "enabled": true,
+        "require_confirmation": false,
+        "recursive": true,
+        "force": true,
+        "allowed_paths": [
+          "**/build/**",
+          "**/dist/**",
+          "**/tmp/**",
+          "**/temp/**",
+          "**/cache/**",
+          "**/logs/**",
+          "**/.next/**",
+          "**/.nuxt/**",
+          "**/node_modules/**",
+          "**/__pycache__/**",
+          "**/*.log",
+          "**/*.tmp",
+          "**/*.temp",
+          "**/*.cache"
+        ],
+        "blocked_commands": [
+          "rm -rf /",
+          "rm -rf /*"
+        ]
+      },
+      "batch_operations": {
+        "enabled": true,
+        "max_files": 10000,
+        "parallel": true
+      }
+    },
+    "command_execution": {
+      "enabled": true,
+      "require_confirmation": false,
+      "parallel_execution": true,
+      "max_parallel": 20,
+      "retry_on_failure": {
+        "enabled": true,
+        "max_retries": 3,
+        "backoff_seconds": 5
+      },
+      "timeout": {
+        "default_seconds": 300,
+        "max_seconds": 3600
+      },
+      "allowed_commands": ["*"],
+      "blocked_patterns": [
+        "rm -rf /",
+        ":(){ :|:& };:",
+        "dd if=/dev/zero of=/dev/sd*",
+        "format *:"
+      ]
+    },
+    "ci_cd_operations": {
+      "enabled": true,
+      "auto_detect_pipeline": true,
+      "supported_platforms": [
+        "github_actions",
+        "gitlab_ci",
+        "jenkins",
+        "circleci",
+        "travis",
+        "azure_devops",
+        "bitbucket_pipelines"
+      ],
+      "auto_commit": {
+        "enabled": true,
+        "message_template": "chore: automated update by Claude Code [skip ci]",
+        "skip_ci_tags": ["[skip ci]", "[ci skip]", "[no ci]"]
+      },
+      "auto_tag": {
+        "enabled": true,
+        "version_bump": "auto",
+        "tag_pattern": "v{version}"
+      },
+      "deployment": {
+        "enabled": true,
+        "environments": ["dev", "staging", "prod"],
+        "rollback_on_failure": true,
+        "health_check_required": true
+      }
+    },
+    "build_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "auto_install_deps": true,
+      "cache_dependencies": true,
+      "parallel_builds": true,
+      "clean_before_build": true,
+      "supported_tools": [
+        "make",
+        "cmake",
+        "gradle",
+        "maven",
+        "npm",
+        "yarn",
+        "pnpm",
+        "cargo",
+        "go",
+        "docker",
+        "webpack",
+        "vite",
+        "rollup"
+      ]
+    },
+    "test_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "auto_run": true,
+      "parallel_tests": true,
+      "coverage_threshold": 0,
+      "fail_on_error": false,
+      "test_frameworks": ["*"],
+      "retry_flaky_tests": true
+    },
+    "container_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "auto_build": true,
+      "auto_push": true,
+      "auto_cleanup": true,
+      "registry_operations": {
+        "login": true,
+        "push": true,
+        "pull": true,
+        "tag": true
+      },
+      "compose_operations": {
+        "up": true,
+        "down": true,
+        "restart": true,
+        "scale": true
+      }
+    },
+    "service_management": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_operations": [
+        "start",
+        "stop",
+        "restart",
+        "reload",
+        "status"
+      ],
+      "systemd": true,
+      "docker_compose": true,
+      "pm2": true,
+      "supervisor": true
+    },
+    "monitoring_and_logging": {
+      "enabled": true,
+      "auto_tail_logs": true,
+      "auto_rotate_logs": true,
+      "metrics_collection": true,
+      "alert_management": false
+    },
+    "secret_management": {
+      "enabled": true,
+      "require_confirmation": false,
+      "auto_inject_env": true,
+      "vault_integration": true,
+      "allowed_operations": [
+        "read",
+        "write",
+        "list"
+      ],
+      "blocked_operations": [
+        "delete",
+        "purge"
+      ]
+    },
+    "notification_settings": {
+      "enabled": false,
+      "channels": [],
+      "on_success": false,
+      "on_failure": false
+    },
+    "resource_limits": {
+      "cpu_percent": 80,
+      "memory_percent": 80,
+      "disk_usage_percent": 90,
+      "network_bandwidth_mbps": 100
+    },
+    "safety_features": {
+      "dry_run_available": true,
+      "rollback_enabled": true,
+      "backup_before_destructive": false,
+      "audit_log": true,
+      "emergency_stop": "CTRL+C"
+    }
+  },
+  "metadata": {
+    "created": "2024-01-31",
+    "risk_level": "EXTREME",
+    "use_case": "ci_cd_automation",
+    "warning": "Designed for automated pipelines in controlled environments only. Never use on production systems without thorough testing."
+  }
+}

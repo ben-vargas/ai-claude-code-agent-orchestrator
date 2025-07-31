@@ -1,0 +1,251 @@
+{
+  "name": "Permissive Development Rules",
+  "description": "⚠️ DANGEROUS: Allows agents extensive freedom for development tasks. USE AT YOUR OWN RISK!",
+  "version": "1.0.0",
+  "rules": {
+    "file_operations": {
+      "create": {
+        "enabled": true,
+        "require_confirmation": false,
+        "allowed_paths": ["*"],
+        "blocked_paths": [
+          "/System",
+          "/Library/Security",
+          "/etc/passwd",
+          "/etc/shadow",
+          "/boot",
+          "/proc",
+          "/sys",
+          "C:\\Windows\\System32",
+          "C:\\Windows\\SysWOW64"
+        ]
+      },
+      "modify": {
+        "enabled": true,
+        "require_confirmation": false,
+        "allowed_paths": ["*"],
+        "blocked_paths": [
+          "/System",
+          "/Library/Security",
+          "/etc/passwd",
+          "/etc/shadow",
+          "/boot/grub",
+          "/etc/fstab",
+          "C:\\Windows\\System32",
+          "C:\\Windows\\Registry"
+        ]
+      },
+      "delete": {
+        "enabled": true,
+        "require_confirmation": false,
+        "allowed_paths": ["*"],
+        "blocked_paths": [
+          "/",
+          "/*",
+          "/System",
+          "/Library",
+          "/Applications",
+          "/usr",
+          "/bin",
+          "/sbin",
+          "/etc",
+          "/var",
+          "/Users",
+          "C:\\",
+          "C:\\*",
+          "C:\\Windows",
+          "C:\\Program Files",
+          "C:\\Users"
+        ],
+        "blocked_patterns": [
+          "**/node_modules/**",
+          "**/.git/objects/**"
+        ],
+        "max_batch_size": 100
+      },
+      "move": {
+        "enabled": true,
+        "require_confirmation": false
+      }
+    },
+    "command_execution": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_commands": ["*"],
+      "blocked_commands": [
+        "rm -rf /",
+        "rm -rf /*",
+        "rm -fr /",
+        "rm -fr /*",
+        "rm -rf / --no-preserve-root",
+        "dd if=/dev/zero of=/dev/sda",
+        "dd if=/dev/random of=/dev/sda",
+        "mkfs.ext4 /dev/sda",
+        "mkfs.* /dev/sda*",
+        ":(){ :|:& };:",
+        "chmod -R 000 /",
+        "chmod -R 777 /",
+        "chown -R nobody:nobody /",
+        "> /dev/sda",
+        "mv /* /dev/null",
+        "wget * | sh",
+        "curl * | sh",
+        "format c:",
+        "format *:"
+      ],
+      "environment_variables": {
+        "allow_modification": true,
+        "protected_vars": ["PATH", "HOME", "USER", "SHELL"]
+      },
+      "sudo": {
+        "enabled": false,
+        "require_password": true
+      }
+    },
+    "package_management": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_managers": [
+        "npm",
+        "yarn",
+        "pnpm",
+        "pip",
+        "pip3",
+        "gem",
+        "cargo",
+        "go get",
+        "composer",
+        "brew",
+        "apt-get",
+        "yum",
+        "dnf",
+        "pacman"
+      ],
+      "allowed_operations": [
+        "install",
+        "update",
+        "upgrade",
+        "remove",
+        "uninstall"
+      ],
+      "blocked_packages": [
+        "*-exploit",
+        "*-backdoor",
+        "*-rootkit"
+      ]
+    },
+    "git_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_operations": ["*"],
+      "auto_commit": true,
+      "auto_push": false,
+      "protected_branches": ["main", "master", "production"],
+      "force_push": {
+        "enabled": false,
+        "protected_branches": ["*"]
+      }
+    },
+    "network_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_protocols": ["http", "https", "ssh", "git"],
+      "blocked_domains": [
+        "*.onion",
+        "*.i2p"
+      ],
+      "upload_limit_mb": 100,
+      "download_limit_mb": 1000
+    },
+    "process_management": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allow_kill": true,
+      "protected_processes": [
+        "systemd",
+        "init",
+        "kernel",
+        "WindowsSystem",
+        "csrss.exe",
+        "smss.exe"
+      ],
+      "allow_background": true
+    },
+    "system_configuration": {
+      "enabled": true,
+      "require_confirmation": true,
+      "allowed_configs": [
+        "~/.bashrc",
+        "~/.zshrc",
+        "~/.gitconfig",
+        "~/.ssh/config"
+      ],
+      "blocked_configs": [
+        "/etc/sudoers",
+        "/etc/hosts",
+        "/etc/resolv.conf",
+        "C:\\Windows\\System32\\drivers\\etc\\hosts"
+      ]
+    },
+    "database_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allow_drop_database": false,
+      "allow_truncate": true,
+      "production_safeguards": true
+    },
+    "docker_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "allowed_operations": [
+        "build",
+        "run",
+        "stop",
+        "restart",
+        "logs",
+        "exec",
+        "ps",
+        "images"
+      ],
+      "blocked_operations": [
+        "system prune -a --volumes",
+        "rm -f $(docker ps -a -q)"
+      ],
+      "volume_mounts": {
+        "allowed_paths": ["*"],
+        "blocked_paths": ["/", "/etc", "/sys", "/proc", "C:\\", "C:\\Windows"]
+      }
+    },
+    "aws_operations": {
+      "enabled": true,
+      "require_confirmation": true,
+      "allowed_services": ["*"],
+      "blocked_operations": [
+        "delete-db-cluster",
+        "delete-db-instance",
+        "terminate-instances",
+        "delete-bucket --force"
+      ],
+      "cost_limit_usd": 100
+    },
+    "agent_coordination": {
+      "parallel_execution": true,
+      "max_concurrent_agents": 10,
+      "resource_sharing": true,
+      "auto_conflict_resolution": true
+    },
+    "safety_overrides": {
+      "interactive_prompts": "skip",
+      "warning_messages": "log_only",
+      "dry_run_mode": false,
+      "rollback_enabled": true,
+      "audit_logging": true
+    }
+  },
+  "metadata": {
+    "created": "2024-01-31",
+    "risk_level": "EXTREME",
+    "recommended_environment": "isolated_vm_only",
+    "warning": "These rules remove most safety checks. Use only in disposable environments where data loss is acceptable."
+  }
+}

@@ -51,3 +51,9 @@ test_results/
 coverage/
 .coverage
 .pytest_cache/
+
+# Dangerous rules should not be installed by default
+# These are for demonstration only
+dangerous-rules/*.active
+dangerous-rules/*-local.json
+dangerous-rules/*-production.json

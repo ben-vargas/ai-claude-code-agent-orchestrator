@@ -308,6 +308,98 @@ devops-expert:
 ### Contributing to MCP Integration:
 We welcome contributions for MCP integration! See our [MCP Integration Guide](docs/MCP-INTEGRATION-GUIDE.md) for details on adding MCP support to agents.
 
+## 🚀 Living Dangerously? Advanced Rules (Use at Your Own Risk!)
+
+Hey there, brave soul! 👋 
+
+So you want your agents to have more freedom? We get it. Sometimes you need to let the agents off the leash in a controlled environment. That's why we've created some "dangerous rules" that give agents extensive permissions.
+
+### 🎭 The "Hold My Coffee" Rules
+
+In the `dangerous-rules/` directory, you'll find configuration files that are basically the equivalent of giving your agents the keys to the kingdom. These include:
+
+- **🔥 Permissive Dev Rules**: "Yes, agent, you can delete files without asking"
+- **🤖 Automation Rules**: "Go ahead, deploy to production at 3 AM"
+- **🔬 Research Rules**: "Analyze ALL the data, I trust you"
+- **🎪 Orchestration Rules**: "You're the boss of all the other agents now"
+
+### ⚠️ The Fine Print (Please Actually Read This)
+
+Look, we need to be crystal clear here: **These rules are DANGEROUS**. Like, "accidentally delete your entire project" dangerous. By using them, you're basically saying:
+
+1. **"I understand what I'm doing"** (Do you though? Really? 🤔)
+2. **"I accept full responsibility"** (No takebacks!)
+3. **"I won't blame anyone else"** (That includes us, Claude, or your cat)
+4. **"I'm using a disposable environment"** (Right? RIGHT?!)
+
+### 🛡️ How to Use Them (Somewhat) Safely
+
+```bash
+# Step 1: Read the warnings
+cat dangerous-rules/README.md
+cat dangerous-rules/DISCLAIMER.md
+
+# Step 2: Set up an isolated environment
+./dangerous-rules/setup-isolated-env.sh
+
+# Step 3: Question your life choices
+
+# Step 4: If you're still sure...
+# Use them in a VM or container that you can nuke from orbit
+```
+
+### 🎯 Good Use Cases
+- **Testing in VMs**: Where `rm -rf` is just a Tuesday
+- **CI/CD pipelines**: In containers that live for 5 minutes
+- **Research sandboxes**: Where data has no feelings
+- **That old laptop**: You were going to reformat anyway
+
+### 🚫 Terrible Use Cases
+- Your work computer (unless you hate your job)
+- Production servers (unless you hate your company)
+- Your mom's computer (unless you hate family dinners)
+- Any system with data you care about
+
+### 🎓 Prerequisites
+
+Before even THINKING about using these rules, you should:
+- Understand how Claude Code rules work
+- Know what each permission actually does
+- Have reliable backups (test them!)
+- Possess a healthy fear of `rm -rf`
+- Maybe have a drink ready for afterwards
+
+### ⚖️ Legal Stuff (But Fun!)
+
+By using these dangerous rules, you acknowledge that:
+- You're an adult (or a very reckless teenager)
+- You understand the risks (destruction, chaos, tears)
+- You take full responsibility for your actions
+- You won't hold us responsible for sharing knowledge
+- You might lose data (probably will, actually)
+- This is YOUR adventure (we're just sharing our tools)
+
+**Important**: If you don't agree with taking full responsibility, then don't use these dangerous rules. In fact, you don't have permission to use them. Simple as that! 🚫
+
+**TL;DR**: We're just sharing what we use in our isolated test environments. If your computer catches fire, your data disappears, or your agents achieve sentience and take over, that's on you, friend! You chose to use these tools. 🔥💾🤖
+
+### 🏃‍♂️ Quick Escape Route
+
+Things going wrong? Here's your panic button:
+
+```bash
+# EMERGENCY STOP
+./dangerous-rules/emergency-cleanup.sh
+# or just
+pkill -f claude
+```
+
+Remember: With great power comes great opportunity to mess things up. Use wisely! Or don't. We're not your supervisor. 😄
+
+---
+
+**Seriously though**: These rules exist for legitimate testing and research purposes in isolated environments. Please be responsible. Your future self will thank you.
+
 ## 🐛 Troubleshooting
 
 ### Agents Not Appearing

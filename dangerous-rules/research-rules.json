@@ -1,0 +1,217 @@
+{
+  "name": "Research and Experimentation Rules",
+  "description": "⚠️ DANGEROUS: For research environments where agents need broad access. USE AT YOUR OWN RISK!",
+  "version": "1.0.0",
+  "rules": {
+    "exploration_mode": {
+      "enabled": true,
+      "allow_discovery": true,
+      "auto_document": true,
+      "learn_from_errors": true
+    },
+    "file_operations": {
+      "read": {
+        "enabled": true,
+        "require_confirmation": false,
+        "allowed_paths": ["*"],
+        "include_hidden": true,
+        "include_system": true,
+        "max_file_size_mb": 1000
+      },
+      "write": {
+        "enabled": true,
+        "require_confirmation": false,
+        "allowed_paths": [
+          "~/research/**",
+          "~/experiments/**",
+          "/tmp/**",
+          "/var/tmp/**",
+          "C:\\Temp\\**",
+          "C:\\Research\\**"
+        ],
+        "auto_create_dirs": true
+      },
+      "analyze": {
+        "enabled": true,
+        "deep_inspection": true,
+        "extract_metadata": true,
+        "pattern_recognition": true
+      }
+    },
+    "data_operations": {
+      "collection": {
+        "enabled": true,
+        "require_confirmation": false,
+        "sources": ["files", "apis", "databases", "logs"],
+        "formats": ["*"],
+        "sampling_enabled": true
+      },
+      "processing": {
+        "enabled": true,
+        "parallel_processing": true,
+        "max_memory_gb": 32,
+        "temp_storage": "/tmp/research",
+        "auto_cleanup": true
+      },
+      "analysis": {
+        "statistical": true,
+        "machine_learning": true,
+        "pattern_matching": true,
+        "anomaly_detection": true
+      }
+    },
+    "web_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "scraping": {
+        "enabled": true,
+        "respect_robots_txt": false,
+        "rate_limit_seconds": 0.1,
+        "user_agents": ["research-bot", "mozilla", "chrome"],
+        "javascript_rendering": true
+      },
+      "api_access": {
+        "enabled": true,
+        "rate_limiting": "adaptive",
+        "authentication": "auto",
+        "retry_strategy": "exponential"
+      },
+      "download": {
+        "enabled": true,
+        "max_file_size_mb": 5000,
+        "allowed_types": ["*"],
+        "parallel_downloads": 10
+      }
+    },
+    "compute_operations": {
+      "enabled": true,
+      "require_confirmation": false,
+      "algorithms": {
+        "sorting": true,
+        "searching": true,
+        "optimization": true,
+        "simulation": true,
+        "machine_learning": true
+      },
+      "parallel_compute": {
+        "enabled": true,
+        "max_threads": "auto",
+        "gpu_acceleration": true
+      },
+      "resource_limits": {
+        "cpu_cores": "all",
+        "memory_percent": 90,
+        "gpu_memory_percent": 95
+      }
+    },
+    "experiment_management": {
+      "enabled": true,
+      "auto_versioning": true,
+      "reproducibility": {
+        "track_seeds": true,
+        "log_environment": true,
+        "capture_dependencies": true
+      },
+      "branching": {
+        "enabled": true,
+        "auto_branch": true,
+        "naming_pattern": "experiment/{timestamp}-{description}"
+      },
+      "results": {
+        "auto_save": true,
+        "format": ["json", "csv", "parquet", "hdf5"],
+        "visualization": true
+      }
+    },
+    "tool_integration": {
+      "jupyter": {
+        "enabled": true,
+        "auto_start": true,
+        "kernel_management": true
+      },
+      "scientific_tools": {
+        "numpy": true,
+        "pandas": true,
+        "scikit-learn": true,
+        "tensorflow": true,
+        "pytorch": true,
+        "r": true,
+        "matlab": true
+      },
+      "visualization": {
+        "matplotlib": true,
+        "plotly": true,
+        "d3": true,
+        "tableau": true
+      }
+    },
+    "database_access": {
+      "enabled": true,
+      "require_confirmation": false,
+      "read_only": false,
+      "allowed_operations": [
+        "select",
+        "insert",
+        "update",
+        "create_table",
+        "create_index"
+      ],
+      "blocked_operations": [
+        "drop_database",
+        "drop_schema"
+      ],
+      "connection_pooling": true,
+      "query_optimization": true
+    },
+    "llm_operations": {
+      "enabled": true,
+      "model_access": ["*"],
+      "fine_tuning": true,
+      "prompt_engineering": true,
+      "batch_inference": true,
+      "cost_tracking": true
+    },
+    "collaboration": {
+      "sharing": {
+        "enabled": true,
+        "auto_document": true,
+        "version_control": true
+      },
+      "multi_agent": {
+        "enabled": true,
+        "coordination": "automatic",
+        "conflict_resolution": "merge"
+      }
+    },
+    "safety_constraints": {
+      "personal_data": {
+        "anonymize": true,
+        "pii_detection": true,
+        "gdpr_compliance": true
+      },
+      "resource_protection": {
+        "system_files": "read_only",
+        "user_home": "careful",
+        "production_data": "blocked"
+      },
+      "ethical_guidelines": {
+        "respect_privacy": true,
+        "avoid_harmful_content": true,
+        "transparent_methods": true
+      }
+    },
+    "blocked_operations": [
+      "rm -rf /",
+      ":(){ :|:& };:",
+      "cryptomining",
+      "password_cracking",
+      "exploit_development"
+    ]
+  },
+  "metadata": {
+    "created": "2024-01-31",
+    "risk_level": "HIGH",
+    "use_case": "research_environments",
+    "warning": "Provides broad access for research. Ensure proper isolation and data backups."
+  }
+}
