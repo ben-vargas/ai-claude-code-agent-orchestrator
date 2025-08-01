@@ -152,6 +152,29 @@ else
     echo "   Agents may not have access to all tools"
 fi
 
+# Install slash commands
+echo ""
+echo "📝 Installing Slash Commands..."
+echo "──────────────────────────────"
+if [ -d ".claude/slash-commands" ]; then
+    mkdir -p "$CLAUDE_DIR/slash-commands"
+    cp .claude/slash-commands/*.md "$CLAUDE_DIR/slash-commands/" 2>/dev/null || {
+        echo "⚠️  No slash commands found to install"
+    }
+    
+    # Count installed slash commands
+    SLASH_COUNT=$(ls -1 "$CLAUDE_DIR/slash-commands/"*.md 2>/dev/null | wc -l)
+    if [ "$SLASH_COUNT" -gt 0 ]; then
+        echo "✅ Installed $SLASH_COUNT slash commands:"
+        echo "   • /alltools - Show all available tools"
+        echo "   • /orchestrate - Orchestration guide"
+        echo "   • /orchestrate-quick - Project templates"
+        echo "   • /orch - Quick orchestration"
+    fi
+else
+    echo "⏭️  No slash commands directory found"
+fi
+
 # Check Claude Code process
 if pgrep -x "Claude" > /dev/null; then
     echo ""

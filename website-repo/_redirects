@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects
+/github https://github.com/W4M-ai/Claude-Code-Agent-Orchestrator
+/docs https://github.com/W4M-ai/Claude-Code-Agent-Orchestrator/tree/main/docs
+/demo https://calendly.com/agent-orchestrator/demo

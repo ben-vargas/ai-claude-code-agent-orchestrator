@@ -5,6 +5,50 @@ All notable changes to the Claude Code Agent Orchestrator project will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6] - 2024-01-31
+
+### Added
+- **Claude Code Hooks System** - Complete observability for agent operations
+  - Tool usage tracking with performance metrics
+  - Progress monitoring with milestones and deliverables
+  - Error recovery with automatic pattern detection
+  - Success/failure tracking with quality scores
+- **Slack Integration** - Real-time notifications
+  - Configurable notification levels (all, important, errors_only)
+  - Batched messages to prevent spam
+  - Performance alerts and daily summaries
+  - Critical alert immediate notifications
+- **Enhanced SQLite Storage** - Centralized data management
+  - All agent data now in SQLite with file backups
+  - Agent task tracking tables
+  - Tool usage statistics
+  - Missing capability detection
+- **Agent Coordination System** - Inter-agent collaboration
+  - Agents can delegate tasks to each other
+  - Coordination queue for task handoffs
+  - Missing capability recording and proposals
+  - Approval queue for dangerous operations
+- **`/alltools` Slash Command** - Tool and MCP visibility
+  - Shows all available tools categorized by type
+  - Lists MCP servers and their status
+  - Provides usage examples for each tool
+- **Multi-Instance Testing** - Parallel orchestration verification
+  - Test scripts for multiple Claude Code instances
+  - Workspace isolation for parallel execution
+  - Advanced parallel orchestration examples
+
+### Enhanced
+- Installation script with hook setup integration
+- Orchestration scripts with SQLite coordination support
+- Agent memory system fully migrated to SQLite
+- Documentation significantly expanded with new guides
+
+### Development Notes
+- Developed in 2 hours with Claude Code
+- Successfully tested with Chrome extension market analysis
+- Generated comprehensive 40-opportunity investment report
+- Proven ROI with real-world use case demonstration
+
 ## [0.5] - 2024-01-31
 
 ### Added

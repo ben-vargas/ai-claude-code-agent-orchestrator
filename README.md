@@ -1,20 +1,28 @@
 # Claude Code Agent Orchestrator 🎭
 
-[![Version](https://img.shields.io/badge/version-0.5-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Built with](https://img.shields.io/badge/built%20with-Claude%20Code-purple.svg)](https://claude.ai/code)
 
 A comprehensive system of 24 specialized AI agents that work together to handle complex software development tasks. Built for [Claude Code](https://claude.ai/code) by [W4M.ai](https://w4m.ai).
 
-## 🎉 What's New in v0.5
+## 🎉 What's New in v0.6
 
-**MCP Server Management**: Automatic detection, validation, and configuration of Model Context Protocol servers. Ensures agents have access to required tools before execution.
+**Enterprise-Grade Enhancements**: Complete monitoring, coordination, and integration capabilities for production-ready agent orchestration.
 
+### Major Features Added:
+- 🔔 **Slack Integration**: Real-time notifications for agent activities
+- 💾 **SQLite Everything**: All agent data now in SQLite with file backups
+- 🤝 **Agent Coordination**: Agents can delegate tasks to each other
+- 📊 **Claude Code Hooks**: Complete observability with performance metrics
+- 🛠️ **`/alltools` Command**: View all available tools and MCP servers
+- 🔍 **Missing Capability Detection**: Automatic tracking of tool/MCP gaps
+- ⚡ **Parallel Testing**: Multi-instance orchestration verification
+
+### Previous v0.5 Features:
 - 🔌 Auto-detect MCP servers from Claude Desktop
 - ✅ Validate server executables and dependencies
 - 📋 Copy servers between Desktop and Code configs
-- ⚠️ Critical server warnings with graceful degradation
-- 🤖 Agent-specific MCP requirement checking
 
 [See full changelog](CHANGELOG.md)
 
@@ -27,7 +35,8 @@ A comprehensive system of 24 specialized AI agents that work together to handle 
 | **v0.3** | Jan 2024 | Project levels (1-5) & interactive mode | 40 minutes |
 | **v0.4** | Jan 2024 | Auto-proceed timeouts for interactive mode | 45 minutes |
 | **v0.5** | Jan 2024 | MCP server management & validation | 30 minutes |
-| **v0.6** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
+| **v0.6** | Jan 2024 | Hooks, Slack, SQLite integration, agent coordination | 2 hours |
+| **v0.7** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
 
 ## 🚀 Overview
 
@@ -37,15 +46,18 @@ Transform your development workflow with specialized AI agents that collaborate 
 
 - **24 Specialized Agents**: Expert knowledge across all development domains
 - **Intelligent Orchestration**: Automatic task routing and parallel execution
-- **SQLite Memory System** (v0.2): Persistent memory with automatic filesystem fallback
+- **SQLite Memory System**: Centralized data storage with file backups (v0.2, enhanced v0.6)
+- **Claude Code Hooks** (v0.6): Complete observability and performance tracking
+- **Slack Integration** (v0.6): Real-time notifications and alerts
+- **Agent Coordination** (v0.6): Inter-agent task delegation and collaboration
+- **Missing Capability Detection** (v0.6): Automatic tool/MCP gap identification
 - **Project Levels** (v0.3): Configurable quality levels from MVP (1) to Enterprise (5)
 - **Interactive Mode** (v0.3): Guide decisions with clarifying questions
 - **Auto-Proceed Timeouts** (v0.4): Continue automatically if no response received
 - **MCP Server Management** (v0.5): Automatic detection and validation of required tools
 - **Multi-Agent Evaluation**: Compare approaches from multiple experts
 - **Self-Improving System**: Learns optimal agent selection over time
-- **Progress Tracking**: Real-time monitoring of orchestration status
-- **MCP-Ready Architecture**: Designed for seamless Model Context Protocol integration
+- **Progress Tracking**: Real-time monitoring with Slack notifications
 
 ## 📋 Available Agents
 
@@ -151,6 +163,15 @@ Critical MCP servers for full functionality:
 
 ## 🎯 Usage
 
+### Slash Commands
+
+Quick commands for common tasks:
+
+- `/orchestrate` - Full orchestration guide with examples
+- `/orchestrate-quick` - Ready-to-use project templates
+- `/orch` - Shorthand for quick orchestration
+- `/alltools` - Show all available tools and MCP servers (NEW in v0.6)
+
 ### Basic Usage
 
 Simply describe what you need in Claude Code:
@@ -193,6 +214,56 @@ Orchestration Plan:
     ├── marketing-expert: Go-to-market strategy
     └── pricing-optimization-expert: Pricing tiers
 ```
+
+## 📊 Monitoring & Observability (NEW in v0.6)
+
+### Claude Code Hooks
+
+Complete tracking of agent activities with hooks:
+
+```bash
+# Install hooks
+cd hooks && ./setup-hooks.sh
+
+# Monitor agent activity
+~/.claude/hooks/monitor-agents.sh
+
+# View advanced dashboard
+~/.claude/hooks/agent-dashboard.sh
+```
+
+Features:
+- **Tool Usage Tracking**: Performance metrics for every tool invocation
+- **Progress Monitoring**: Milestones, deliverables, and task completion
+- **Error Recovery**: Automatic detection and recovery attempts
+- **Success Metrics**: Quality scores and performance analysis
+
+### Slack Integration
+
+Real-time notifications for team visibility:
+
+```bash
+# Configure Slack
+~/.claude/hooks/slack-notifier.sh configure
+
+# Start monitoring daemon
+~/.claude/hooks/slack-notifier.sh monitor
+```
+
+Notification types:
+- 🚨 Critical alerts for system failures
+- ⚠️ High priority for blocked tasks
+- ✅ Task completions and milestones
+- 📊 Daily activity summaries
+
+### SQLite Data Storage
+
+All agent data centralized in SQLite with file backups:
+- Agent tasks and progress
+- Tool usage statistics
+- Error patterns and recovery
+- Missing capability tracking
+- Inter-agent coordination
 
 ## 📊 How It Works
 
@@ -418,10 +489,18 @@ Remember: With great power comes great opportunity to mess things up. Use wisely
 
 ## 📚 Documentation
 
+### Core Guides
 - [Quick Start Guide](docs/AGENT-QUICK-START.md)
 - [Complete Guide](docs/AGENT-COMPLETE-GUIDE.md)
 - [Agent Work Tracking](docs/agent-work-tracker.md)
 - [Blog Post: Building an AI Agent Orchestra](docs/blog-post-agent-system.md)
+
+### New Features (v0.6)
+- [Claude Code Hooks Guide](docs/CLAUDE-CODE-HOOKS.md)
+- [Slack Integration Guide](docs/SLACK-INTEGRATION-GUIDE.md)
+- [Enhanced SQLite Storage](docs/ENHANCED-SQLITE-STORAGE.md)
+- [Multi-Instance Testing](docs/MULTI-INSTANCE-TESTING.md)
+- [Monetization Strategy](docs/MONETIZATION-STRATEGY.md)
 
 ## 🙏 Acknowledgments
 
@@ -435,7 +514,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🚀 Roadmap & Next Steps
 
-### v0.6 (In Development) - True Parallel Execution
+### v0.7 (In Development) - True Parallel Execution
 - 🖥️ **Multi-Terminal Orchestration**: Spawn multiple Claude instances for true parallelism
 - ⚡ **3x Speed Improvement**: Run independent agents simultaneously
 - 📊 **Resource Management**: Smart allocation across terminals
@@ -445,11 +524,11 @@ MIT License - see [LICENSE](LICENSE) file for details
 [See detailed design](docs/PARALLEL-EXECUTION-DESIGN.md)
 
 ### Future Versions
-- **v0.7**: Extended MCP Integration Suite (GitHub, Slack, AWS, etc.)
-- **v0.8**: Agent Learning System with Performance Analytics
-- **v0.9**: Visual Workflow Designer
-- **v1.0**: Enterprise Features (SSO, Audit Logs, SLA)
-- **v1.1**: Production-Ready Platform
+- **v0.8**: Extended MCP Integration Suite (GitHub, AWS, etc.)
+- **v0.9**: Agent Learning System with Performance Analytics
+- **v1.0**: Visual Workflow Designer
+- **v1.1**: Enterprise Features (SSO, Audit Logs, SLA)
+- **v1.2**: Production-Ready Platform
 
 ### Contributing Ideas
 - Custom agent creation wizard
@@ -462,7 +541,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 - [W4M.ai](https://w4m.ai)
 - [Claude Code](https://claude.ai/code)
-- [Blog Post](https://linkedin.com/in/your-profile)
+- [Blog Post](https://linkedin.com/in/fvongraf)
 - [Issues](https://github.com/W4M-ai/Claude-Code-Agent-Orchestrator/issues)
 
 ---

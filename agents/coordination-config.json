@@ -1,0 +1,189 @@
+{
+  "coordination_settings": {
+    "enabled": true,
+    "description": "Agent coordination and autonomous capability expansion settings"
+  },
+  
+  "autonomous_operations": {
+    "safe_mode": true,
+    "description": "When true, all potentially dangerous operations require approval",
+    
+    "agent_creation": {
+      "enabled": false,
+      "auto_approve_threshold": 0.9,
+      "require_human_approval": true,
+      "max_agents_per_day": 5,
+      "allowed_templates": ["generic", "specialist", "coordinator"],
+      "name_prefix": "auto-generated-"
+    },
+    
+    "tool_installation": {
+      "enabled": false,
+      "auto_approve_threshold": 0.85,
+      "require_human_approval": true,
+      "allowed_sources": ["npm", "pip", "official-repos"],
+      "blocked_commands": ["sudo", "rm -rf", "format", "del /f"],
+      "max_install_size_mb": 100,
+      "sandbox_installs": true
+    },
+    
+    "mcp_installation": {
+      "enabled": false,
+      "auto_approve_threshold": 0.9,
+      "require_human_approval": true,
+      "allowed_repositories": [
+        "github.com/anthropics/*",
+        "github.com/modelcontextprotocol/*"
+      ],
+      "verify_signatures": true,
+      "test_before_enable": true
+    },
+    
+    "command_execution": {
+      "enabled": false,
+      "allowed_commands": [],
+      "blocked_patterns": ["*sudo*", "*rm -rf*", "*>/*", "*../../*"],
+      "max_execution_time_seconds": 300,
+      "require_justification": true
+    }
+  },
+  
+  "coordination_features": {
+    "task_delegation": {
+      "enabled": true,
+      "max_delegation_depth": 3,
+      "require_acceptance": false,
+      "track_performance": true
+    },
+    
+    "collaboration_requests": {
+      "enabled": true,
+      "auto_match_expertise": true,
+      "max_collaborators": 5,
+      "timeout_hours": 24
+    },
+    
+    "capability_discovery": {
+      "enabled": true,
+      "share_discoveries": true,
+      "min_effectiveness_to_share": 0.7,
+      "auto_adopt_discoveries": false
+    },
+    
+    "missing_capability_tracking": {
+      "enabled": true,
+      "auto_propose_solutions": true,
+      "escalation_threshold": 5,
+      "aggregate_similar": true
+    }
+  },
+  
+  "resource_management": {
+    "parallel_execution": {
+      "max_concurrent_agents": 10,
+      "cpu_limit_per_agent": "1 core",
+      "memory_limit_per_agent": "2GB",
+      "shared_resource_locking": true
+    },
+    
+    "mcp_server_sharing": {
+      "enabled": true,
+      "connection_pooling": true,
+      "max_connections_per_server": 20,
+      "load_balancing": "round-robin"
+    }
+  },
+  
+  "safety_measures": {
+    "approval_requirements": {
+      "install_tool": {
+        "min_safety_score": 0.8,
+        "require_justification": true,
+        "notify_user": true
+      },
+      "create_agent": {
+        "min_safety_score": 0.85,
+        "require_use_case": true,
+        "similarity_check": true
+      },
+      "install_mcp": {
+        "min_safety_score": 0.9,
+        "test_in_sandbox": true,
+        "verify_publisher": true
+      }
+    },
+    
+    "rollback_capability": {
+      "enabled": true,
+      "keep_backups": true,
+      "backup_retention_days": 30,
+      "auto_rollback_on_failure": true
+    },
+    
+    "audit_logging": {
+      "log_all_proposals": true,
+      "log_all_installations": true,
+      "log_all_coordinations": true,
+      "log_retention_days": 90
+    }
+  },
+  
+  "notification_settings": {
+    "user_notifications": {
+      "approval_required": true,
+      "installation_complete": true,
+      "capability_gap_found": true,
+      "coordination_milestone": false
+    },
+    
+    "agent_notifications": {
+      "new_task_assigned": true,
+      "collaboration_request": true,
+      "tool_available": true,
+      "discovery_shared": true
+    }
+  },
+  
+  "thresholds": {
+    "confidence_scores": {
+      "very_low": 0.2,
+      "low": 0.4,
+      "medium": 0.6,
+      "high": 0.8,
+      "very_high": 0.9
+    },
+    
+    "auto_approval": {
+      "min_confidence": 0.85,
+      "min_safety": 0.8,
+      "max_risk": 0.2
+    },
+    
+    "escalation": {
+      "repeated_failures": 3,
+      "blocking_duration_hours": 4,
+      "critical_impact_score": 0.8
+    }
+  },
+  
+  "trusted_sources": {
+    "repositories": [
+      "github.com/anthropics/*",
+      "github.com/modelcontextprotocol/*",
+      "github.com/microsoft/vscode-*",
+      "github.com/facebook/react"
+    ],
+    "npm_packages": [
+      "@anthropic/*",
+      "@modelcontextprotocol/*",
+      "typescript",
+      "eslint",
+      "prettier"
+    ],
+    "agent_templates": [
+      "backend-expert",
+      "frontend-expert",
+      "database-architect"
+    ]
+  }
+}

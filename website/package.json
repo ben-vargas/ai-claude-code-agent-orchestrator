@@ -1,0 +1,12 @@
+{
+  "name": "claude-code-agent-orchestrator-website",
+  "version": "1.0.0",
+  "description": "Landing page for Claude Code Agent Orchestrator",
+  "scripts": {
+    "build": "echo 'No build required for static site'",
+    "preview": "npx serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
