@@ -1,5 +1,0 @@
-name = "agent-orchestrator"
-compatibility_date = "2025-01-31"
-
-[site]
-bucket = "./"
