@@ -1,0 +1,16 @@
+name = "agent-orchestrator"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Deployment configuration
+[env.production]
+name = "agent-orchestrator"
+
+# Route configuration (optional - can be configured in Cloudflare dashboard)
+# route = { pattern = "agent-orchestrator.com/*", zone_name = "agent-orchestrator.com" }
+
+# Custom domains (configure in Cloudflare dashboard after deployment)
+# routes = [
+#   { pattern = "agent-orchestrator.com", custom_domain = true },
+#   { pattern = "www.agent-orchestrator.com", custom_domain = true }
+# ]
