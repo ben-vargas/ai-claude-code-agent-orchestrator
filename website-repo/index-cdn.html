@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Agent Orchestrator - Your AI Development Team</title>
+    <meta name="description" content="Transform into a full development team with 24 specialized AI agents. Build anything, ship faster.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Custom styles -->
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #d946ef, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .agent-card {
+            transition: all 0.3s ease;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body x-data="{ darkMode: false, mobileMenu: false }" :class="{ 'dark': darkMode }">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-blue-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">🎭</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">Agent Orchestrator</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400">Features</a>
+                    <a href="#agents" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400">Agents</a>
+                    <a href="#pricing" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400">Pricing</a>
+                    <a href="#testimonials" class="text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400">Success Stories</a>
+                    <button @click="darkMode = !darkMode" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                        <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </button>
+                    <a href="https://github.com/claude-code/agent-orchestrator" class="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition">Start Free</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenu" x-transition class="md:hidden mt-4 space-y-4">
+                <a href="#features" class="block text-gray-600 dark:text-gray-300">Features</a>
+                <a href="#agents" class="block text-gray-600 dark:text-gray-300">Agents</a>
+                <a href="#pricing" class="block text-gray-600 dark:text-gray-300">Pricing</a>
+                <a href="#testimonials" class="block text-gray-600 dark:text-gray-300">Success Stories</a>
+                <a href="https://github.com/claude-code/agent-orchestrator" class="block bg-brand-600 text-white text-center px-6 py-2 rounded-lg">Start Free</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    Your AI Development Team:<br>
+                    <span class="gradient-text">24 Specialized Agents</span>,<br>
+                    One Powerful Orchestrator
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Stop googling. Start building. Transform into a full development team with AI agents that handle everything from backend to business strategy.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="#" class="bg-brand-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-700 transition inline-flex items-center justify-center">
+                        Start Building Free
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <a href="#demo" class="border-2 border-brand-600 text-brand-600 dark:text-brand-400 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-brand-50 dark:hover:bg-brand-900/20 transition inline-flex items-center justify-center">
+                        Watch 5-Min Demo
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                    <div>
+                        <div class="text-3xl font-bold text-brand-600">24</div>
+                        <div class="text-gray-600 dark:text-gray-400">Specialized Agents</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-600">10x</div>
+                        <div class="text-gray-600 dark:text-gray-400">Faster Delivery</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-600">80%</div>
+                        <div class="text-gray-600 dark:text-gray-400">Cost Reduction</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-600">5K+</div>
+                        <div class="text-gray-600 dark:text-gray-400">Active Users</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Demo Preview -->
+            <div class="mt-16 relative">
+                <div class="bg-gray-900 rounded-xl shadow-2xl p-6 border border-gray-800">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-400 text-sm ml-4">orchestrator.ai</span>
+                    </div>
+                    
+                    <!-- Animated orchestration visualization -->
+                    <div class="bg-black rounded-lg p-8" x-data="orchestrationDemo()">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto bg-blue-500/20 rounded-full flex items-center justify-center mb-2 animate-pulse-slow">
+                                    <span class="text-2xl">🧠</span>
+                                </div>
+                                <p class="text-blue-400 text-sm">Business Analyst</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center mb-2 animate-pulse-slow" style="animation-delay: 0.5s">
+                                    <span class="text-2xl">🎨</span>
+                                </div>
+                                <p class="text-purple-400 text-sm">UI/UX Expert</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto bg-green-500/20 rounded-full flex items-center justify-center mb-2 animate-pulse-slow" style="animation-delay: 1s">
+                                    <span class="text-2xl">⚙️</span>
+                                </div>
+                                <p class="text-green-400 text-sm">Backend Expert</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <p class="text-gray-400">Agents collaborating on: <span class="text-white font-semibold">"Build a SaaS dashboard"</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-white dark:bg-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">From idea to production in four simple steps</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-100 dark:bg-brand-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💭</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Describe Your Project</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Tell us what you want to build in natural language</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-100 dark:bg-brand-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Agents Assigned</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Orchestrator assigns the right specialists for your project</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-100 dark:bg-brand-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🤝</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Parallel Collaboration</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Agents work together, sharing context and deliverables</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-100 dark:bg-brand-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🚀</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Production Ready</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Get complete, tested, deployment-ready code</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Grid Section -->
+    <section id="agents" class="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Your AI Development Team</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">24 specialized agents, each an expert in their domain</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Backend Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">⚙️</div>
+                    <h4 class="font-semibold text-sm">Backend Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">APIs, databases, auth</p>
+                </div>
+                
+                <!-- Frontend Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🎨</div>
+                    <h4 class="font-semibold text-sm">Frontend Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">React, Vue, UX</p>
+                </div>
+                
+                <!-- Mobile Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">📱</div>
+                    <h4 class="font-semibold text-sm">Mobile Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">iOS, Android, React Native</p>
+                </div>
+                
+                <!-- DevOps Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🚀</div>
+                    <h4 class="font-semibold text-sm">DevOps Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">CI/CD, monitoring</p>
+                </div>
+                
+                <!-- Cloud Architect -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">☁️</div>
+                    <h4 class="font-semibold text-sm">Cloud Architect</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">AWS, Azure, scaling</p>
+                </div>
+                
+                <!-- Security Specialist -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🔒</div>
+                    <h4 class="font-semibold text-sm">Security Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Security, compliance</p>
+                </div>
+                
+                <!-- QA Test Engineer -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🧪</div>
+                    <h4 class="font-semibold text-sm">QA Engineer</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Testing, automation</p>
+                </div>
+                
+                <!-- Database Architect -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🗄️</div>
+                    <h4 class="font-semibold text-sm">Database Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Schema, optimization</p>
+                </div>
+                
+                <!-- AI/ML Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🤖</div>
+                    <h4 class="font-semibold text-sm">AI/ML Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">ML models, AI integration</p>
+                </div>
+                
+                <!-- Business Analyst -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">📊</div>
+                    <h4 class="font-semibold text-sm">Business Analyst</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Market research, ROI</p>
+                </div>
+                
+                <!-- Product Strategy -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🎯</div>
+                    <h4 class="font-semibold text-sm">Product Strategy</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Roadmap, features</p>
+                </div>
+                
+                <!-- Marketing Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">📢</div>
+                    <h4 class="font-semibold text-sm">Marketing Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">GTM, content, SEO</p>
+                </div>
+                
+                <!-- UI/UX Expert -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">✨</div>
+                    <h4 class="font-semibold text-sm">UI/UX Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Design, prototypes</p>
+                </div>
+                
+                <!-- Customer Success -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">🤝</div>
+                    <h4 class="font-semibold text-sm">Customer Success</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Onboarding, support</p>
+                </div>
+                
+                <!-- Data Analytics -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">📈</div>
+                    <h4 class="font-semibold text-sm">Data Analytics</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Metrics, insights</p>
+                </div>
+                
+                <!-- Business Operations -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">💼</div>
+                    <h4 class="font-semibold text-sm">Business Ops</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Payments, billing</p>
+                </div>
+                
+                <!-- Legal Compliance -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">⚖️</div>
+                    <h4 class="font-semibold text-sm">Legal Expert</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Compliance, privacy</p>
+                </div>
+                
+                <!-- Performance Engineer -->
+                <div class="agent-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl">
+                    <div class="text-3xl mb-2">⚡</div>
+                    <h4 class="font-semibold text-sm">Performance</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Speed, optimization</p>
+                </div>
+                
+                <!-- And more... -->
+                <div class="agent-card bg-brand-50 dark:bg-brand-900/20 p-4 rounded-lg shadow-lg cursor-pointer hover:shadow-xl border-2 border-brand-300 dark:border-brand-700">
+                    <div class="text-3xl mb-2">➕</div>
+                    <h4 class="font-semibold text-sm text-brand-600 dark:text-brand-400">6 More</h4>
+                    <p class="text-xs text-brand-600 dark:text-brand-400 mt-1">View all agents</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 bg-white dark:bg-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Start free, upgrade when you need more power</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Free Tier -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl relative">
+                    <h3 class="text-xl font-bold mb-2">Community</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">For individual developers</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$0</span>
+                        <span class="text-gray-600 dark:text-gray-400">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">All 24 agents</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">5 tasks/day</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Community support</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition">Get Started</a>
+                </div>
+                
+                <!-- Professional Tier -->
+                <div class="bg-brand-50 dark:bg-brand-900/20 p-8 rounded-xl relative border-2 border-brand-300 dark:border-brand-700">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-600 text-white px-4 py-1 rounded-full text-sm">Popular</div>
+                    <h3 class="text-xl font-bold mb-2">Professional</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">For professionals</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$49</span>
+                        <span class="text-gray-600 dark:text-gray-400">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Everything in Free</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">100 tasks/day</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Priority support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Private workspaces</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-brand-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-700 transition">Start Trial</a>
+                </div>
+                
+                <!-- Team Tier -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl relative">
+                    <h3 class="text-xl font-bold mb-2">Team</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">For growing teams</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$199</span>
+                        <span class="text-gray-600 dark:text-gray-400">/seat/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Everything in Pro</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Unlimited tasks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Team collaboration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Analytics dashboard</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-300 transition">Contact Sales</a>
+                </div>
+                
+                <!-- Enterprise Tier -->
+                <div class="bg-gray-50 dark:bg-gray-900 p-8 rounded-xl relative">
+                    <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">For large organizations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">Custom</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">Everything in Team</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">SSO & compliance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">On-premise option</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-sm">24/7 support</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-300 transition">Talk to Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">See what teams are building with Agent Orchestrator</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900/20 rounded-full mr-4"></div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Chen</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Founder, TechStartup</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">"Built our entire SaaS platform in 2 weeks instead of 6 months. The agents handled everything from database design to deployment."</p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400">
+                        <span class="font-semibold">$1M ARR in 3 months</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900/20 rounded-full mr-4"></div>
+                        <div>
+                            <h4 class="font-semibold">Marcus Rodriguez</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">CTO, Digital Agency</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">"We can now take on any project. Our 5-person team delivers like we have 50 specialists."</p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400">
+                        <span class="font-semibold">10x more projects delivered</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900/20 rounded-full mr-4"></div>
+                        <div>
+                            <h4 class="font-semibold">Emily Thompson</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">VP Engineering, FinTech</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">"Reduced development costs by 80% while improving code quality. It's like having expert consultants on-demand."</p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400">
+                        <span class="font-semibold">80% cost reduction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-brand-600 to-blue-600">
+        <div class="container mx-auto max-w-4xl text-center text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to 10x Your Development Speed?</h2>
+            <p class="text-xl mb-8 opacity-90">Join thousands of developers building with AI agents. Start free today.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="bg-white text-brand-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition inline-flex items-center justify-center">
+                    Start Building Free
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+                <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition inline-flex items-center justify-center">
+                    Schedule Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-blue-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">🎭</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">Agent Orchestrator</span>
+                    </div>
+                    <p class="text-sm">Transform into a full development team with 24 specialized AI agents.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Features</a></li>
+                        <li><a href="#" class="hover:text-white">Agents</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Community</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 Claude Code Agent Orchestrator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Alpine.js components -->
+    <script>
+        function orchestrationDemo() {
+            return {
+                init() {
+                    // Add any interactive demo logic here
+                }
+            }
+        }
+    </script>
+</body>
+</html>
