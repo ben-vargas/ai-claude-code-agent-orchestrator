@@ -5,6 +5,44 @@ All notable changes to the Claude Code Agent Orchestrator project will be docume
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7] - 2025-01-01
+
+### Added
+- **Parallel Test Framework** - Complete infrastructure for testing multi-agent parallel execution
+  - `test-parallel-orchestration.sh` - Automated parallel test setup
+  - `launch-all-auto.sh` - Auto-execution scripts for hands-free testing
+  - Multiple monitoring scripts for real-time visibility
+  - Sample e-commerce project with 4 parallel agents
+- **Claude Rules Integration** - Pre-authorized permissions for test workspaces
+  - `.claude_rules` and `.claude_rules.json` for permission management
+  - Automatic trust and authorization for file operations
+  - No permission prompts during parallel execution
+- **Enhanced Monitoring Tools** - Improved visibility for parallel operations
+  - `show-sample-monitoring.sh` - Demo of parallel monitoring output
+  - `monitor-test.sh` - Real-time test execution monitoring
+  - Fixed dashboard scripts with proper syntax
+- **Comprehensive Testing Documentation**
+  - `PARALLEL-TESTING-GUIDE.md` - Complete testing instructions
+  - `PARALLEL-TESTING-QUICKSTART.md` - Quick reference guide
+  - Detailed orchestration plans for parallel execution
+
+### Enhanced
+- Installation and setup scripts for hooks system
+- Monitor scripts with better error handling
+- Dashboard visualization improvements
+- Quick test creation scripts
+
+### Fixed
+- Dashboard script syntax errors
+- Monitor script infinite loop handling
+- Model configuration issues with Claude Code
+- Terminal auto-close functionality
+
+### Development Notes
+- Developed in 1.5 hours with Claude Code
+- Successfully tested parallel execution framework
+- Demonstrated 3.75x speedup potential with 4 parallel agents
+
 ## [0.6] - 2024-01-31
 
 ### Added

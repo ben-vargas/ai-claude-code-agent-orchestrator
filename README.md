@@ -1,23 +1,30 @@
 # Claude Code Agent Orchestrator 🎭
 
-[![Version](https://img.shields.io/badge/version-0.6-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.7-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Built with](https://img.shields.io/badge/built%20with-Claude%20Code-purple.svg)](https://claude.ai/code)
 
 A comprehensive system of 24 specialized AI agents that work together to handle complex software development tasks. Built for [Claude Code](https://claude.ai/code) by [W4M.ai](https://w4m.ai).
 
-## 🎉 What's New in v0.6
+## 🎉 What's New in v0.7
 
-**Enterprise-Grade Enhancements**: Complete monitoring, coordination, and integration capabilities for production-ready agent orchestration.
+**Parallel Testing Infrastructure**: Complete testing framework for multi-agent parallel execution with automated monitoring and coordination.
 
 ### Major Features Added:
+- 🚀 **Parallel Test Framework**: Automated multi-terminal orchestration testing
+- 📊 **Real-time Monitoring**: Live dashboards for parallel agent activity
+- 🤖 **Auto-execution Scripts**: Hands-free parallel test execution
+- 📋 **Claude Rules Integration**: Pre-authorized permissions for test workspaces
+- 🔔 **Enhanced Monitoring**: Improved hooks and dashboard visualization
+- 📝 **Comprehensive Testing Guides**: Step-by-step parallel testing documentation
+
+### Previous v0.6 Features:
 - 🔔 **Slack Integration**: Real-time notifications for agent activities
 - 💾 **SQLite Everything**: All agent data now in SQLite with file backups
 - 🤝 **Agent Coordination**: Agents can delegate tasks to each other
 - 📊 **Claude Code Hooks**: Complete observability with performance metrics
 - 🛠️ **`/alltools` Command**: View all available tools and MCP servers
 - 🔍 **Missing Capability Detection**: Automatic tracking of tool/MCP gaps
-- ⚡ **Parallel Testing**: Multi-instance orchestration verification
 
 ### Previous v0.5 Features:
 - 🔌 Auto-detect MCP servers from Claude Desktop
@@ -36,7 +43,8 @@ A comprehensive system of 24 specialized AI agents that work together to handle 
 | **v0.4** | Jan 2024 | Auto-proceed timeouts for interactive mode | 45 minutes |
 | **v0.5** | Jan 2024 | MCP server management & validation | 30 minutes |
 | **v0.6** | Jan 2024 | Hooks, Slack, SQLite integration, agent coordination | 2 hours |
-| **v0.7** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
+| **v0.7** | Jan 2025 | Parallel test framework, auto-execution, monitoring | 1.5 hours |
+| **v0.8** | *Upcoming* | True parallel execution with multi-terminal orchestration | *In Development* |
 
 ## 🚀 Overview
 
@@ -514,7 +522,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🚀 Roadmap & Next Steps
 
-### v0.7 (In Development) - True Parallel Execution
+### v0.8 (In Development) - True Parallel Execution
 - 🖥️ **Multi-Terminal Orchestration**: Spawn multiple Claude instances for true parallelism
 - ⚡ **3x Speed Improvement**: Run independent agents simultaneously
 - 📊 **Resource Management**: Smart allocation across terminals
@@ -524,11 +532,11 @@ MIT License - see [LICENSE](LICENSE) file for details
 [See detailed design](docs/PARALLEL-EXECUTION-DESIGN.md)
 
 ### Future Versions
-- **v0.8**: Extended MCP Integration Suite (GitHub, AWS, etc.)
-- **v0.9**: Agent Learning System with Performance Analytics
-- **v1.0**: Visual Workflow Designer
-- **v1.1**: Enterprise Features (SSO, Audit Logs, SLA)
-- **v1.2**: Production-Ready Platform
+- **v0.9**: Extended MCP Integration Suite (GitHub, AWS, etc.)
+- **v1.0**: Agent Learning System with Performance Analytics
+- **v1.1**: Visual Workflow Designer
+- **v1.2**: Enterprise Features (SSO, Audit Logs, SLA)
+- **v1.3**: Production-Ready Platform
 
 ### Contributing Ideas
 - Custom agent creation wizard
